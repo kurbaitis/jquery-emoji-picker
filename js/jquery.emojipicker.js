@@ -11,7 +11,8 @@
         recentCount: 36,
         emojiSet: 'apple',
         container: 'body',
-        button: true
+        button: true,
+        buttonSelector: null
       };
 
   var MIN_WIDTH = 280,
@@ -371,6 +372,12 @@
     },
 
     clickOutside: function(e) {
+      if (this.settings.buttonSelector) {
+        if ($(this.settings.buttonSelector).attr('id') === $(e.target).attr('id')) {
+          return;
+        }
+      }
+
       if ( this.active ) {
         this.hide();
       }
