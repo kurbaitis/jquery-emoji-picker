@@ -58,7 +58,8 @@
     }
 
     var possiblePositions = [ 'left',
-                              'right'
+                              'right',
+                              'top-right'
                               /*,'top',
                               'bottom'*/];
     if($.inArray(this.settings.position,possiblePositions) == -1) {
@@ -202,10 +203,12 @@
 
       // Step 2
       var elOffset = this.$el.offset();
-      if(this.settings.position == 'right'){
+      if(this.settings.position == 'right' || this.settings.position == 'top-right'){
         elOffset.left += this.$el.outerWidth() - this.settings.width;
       }
-      elOffset.top += this.$el.outerHeight();
+      if(this.settings.position == 'top-right' || this.settings.position == 'top'){
+        elOffset.top -= this.settings.height;
+      }
 
       // Step 3
       var diffOffset = {
